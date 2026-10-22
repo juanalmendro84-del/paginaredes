@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi Pagina</title>
+
+    <!-- Tipografía estilo Neue -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #111111;
+            --dark: #222222;
+            --gray: #777777;
+            --light-gray: #e8e8e8;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.5;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid #eeeeee;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #888;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav a {
+            color: var(--black);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        nav a:hover {
+            opacity: 0.45;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            padding: 150px 7% 80px;
+
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .hero-text {
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 25px;
+
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gray);
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 35px;
+            height: 1px;
+            background: var(--black);
+        }
+
+        h1 {
+            font-size: clamp(55px, 8vw, 115px);
+            line-height: 0.88;
+            letter-spacing: -7px;
+            font-weight: 600;
+            margin-bottom: 35px;
+        }
+
+        .career {
+            font-size: clamp(18px, 2vw, 26px);
+            font-weight: 400;
+            max-width: 600px;
+            margin-bottom: 10px;
+        }
+
+        .university {
+            color: var(--gray);
+            font-size: 15px;
+        }
+
+        .hero-number {
+            margin-top: 50px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #999;
+        }
+
+        /* AVATAR */
+
+        .avatar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .avatar {
+            width: min(380px, 80vw);
+            height: min(380px, 80vw);
+
+            border: 1px solid var(--black);
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+        }
+
+        .avatar::before {
+            content: "";
+            position: absolute;
+            width: 82%;
+            height: 82%;
+            border: 1px solid #dddddd;
+            border-radius: 50%;
+        }
+
+        .avatar svg {
+            width: 62%;
+            height: 62%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 120px 7%;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            border-top: 1px solid var(--black);
+            padding-top: 20px;
+
+            margin-bottom: 70px;
+        }
+
+        .section-number {
+            font-size: 12px;
+            color: var(--gray);
+            letter-spacing: 2px;
+        }
+
+        .section-title {
+            font-size: clamp(42px, 6vw, 80px);
+            line-height: 0.95;
+            letter-spacing: -4px;
+            font-weight: 500;
+        }
+
+        /* SOBRE MI */
+
+        .about {
+            background: #f5f5f5;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+        }
+
+        .about-intro {
+            font-size: clamp(28px, 4vw, 52px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+        }
+
+        .about-description {
+            font-size: 16px;
+            color: #666;
+            max-width: 500px;
+            line-height: 1.8;
+        }
+
+        .student-tag {
+            display: inline-block;
+
+            margin-top: 35px;
+            padding: 10px 18px;
+
+            border: 1px solid #111;
+            border-radius: 100px;
+
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* CONTACTO */
+
+        .contact {
+            padding-bottom: 70px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .contact-card {
+            border: 1px solid #dddddd;
+            padding: 35px;
+
+            text-decoration: none;
+            color: var(--black);
+
+            transition: all 0.25s ease;
+        }
+
+        .contact-card:hover {
+            background: var(--black);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .contact-label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .contact-card:hover .contact-label {
+            color: #aaa;
+        }
+
+        .contact-value {
+            font-size: 22px;
+            font-weight: 400;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 30px 7%;
+
+            border-top: 1px solid #ddd;
+
+            display: flex;
+            justify-content: space-between;
+
+            font-size: 11px;
+            color: #888;
+            letter-spacing: 1px;
+        }
+
+        /* ANIMACIONES */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text > * {
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .hero-text .eyebrow {
+            animation-delay: 0.1s;
+        }
+
+        .hero-text h1 {
+            animation-delay: 0.2s;
+        }
+
+        .hero-text .career {
+            animation-delay: 0.3s;
+        }
+
+        .hero-text .university {
+            animation-delay: 0.4s;
+        }
+
+        .avatar-container {
+            animation: fadeUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 0 6%;
+            }
+
+            nav ul {
+                gap: 18px;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                padding-top: 130px;
+            }
+
+            .avatar-container {
+                order: -1;
+            }
+
+            .avatar {
+                width: 260px;
+                height: 260px;
+            }
+
+            h1 {
+                letter-spacing: -4px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                margin-bottom: 50px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            nav ul {
+                display: none;
+            }
+
+            section {
+                padding: 90px 6%;
+            }
+
+            .hero {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+            h1 {
+                font-size: 55px;
+            }
+
+            .contact-value {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+        <div class="logo">
+            GMA<span>.</span>
+        </div>
+
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HERO -->
+
+    <main id="inicio">
+
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <div class="eyebrow">
+                    Presentación personal
+                </div>
+
+                <h1>
+                    Gilberto<br>
+                    Martinez<br>
+                    Arriaga
+                </h1>
+
+                <p class="career">
+                    Licenciado en Tecnologías de la Información
+                </p>
+
+                <p class="university">
+                    Universidad Autónoma de Tamaulipas
+                </p>
+
+                <div class="hero-number">
+                    ESTUDIANTE · 01 / 03
+                </div>
+
+            </div>
+
+
+            <!-- AVATAR VECTORIAL -->
+
+            <div class="avatar-container">
+
+                <div class="avatar">
+
+                    <svg viewBox="0 0 200 200"
+                         xmlns="http://www.w3.org/2000/svg">
+
+                        <!-- Cabeza -->
+                        <circle
+                            cx="100"
+                            cy="70"
+                            r="34"
+                            fill="#111111"
+                        />
+
+                        <!-- Cuello -->
+                        <rect
+                            x="88"
+                            y="96"
+                            width="24"
+                            height="20"
+                            fill="#111111"
+                        />
+
+                        <!-- Cuerpo -->
+                        <path
+                            d="M45 175
+                               C48 135 70 112 100 112
+                               C130 112 152 135 155 175
+                               Z"
+                            fill="#111111"
+                        />
+
+                        <!-- Pequeño detalle -->
+                        <circle
+                            cx="88"
+                            cy="67"
+                            r="3"
+                            fill="white"
+                        />
+
+                        <circle
+                            cx="112"
+                            cy="67"
+                            r="3"
+                            fill="white"
+                        />
+
+                        <!-- Sonrisa -->
+                        <path
+                            d="M87 82 Q100 90 113 82"
+                            fill="none"
+                            stroke="white"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
+
+                    </svg>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SOBRE MI -->
+
+        <section class="about" id="sobre-mi">
+
+            <div class="section-header">
+
+                <div class="section-number">
+                    02
+                </div>
+
+                <h2 class="section-title">
+                    Sobre mí
+                </h2>
+
+            </div>
+
+
+            <div class="about-content">
+
+                <div>
+
+                    <p class="about-intro">
+                        Actualmente soy estudiante y me encuentro
+                        desarrollándome en el área de Tecnologías
+                        de la Información.
+                    </p>
+
+                    <span class="student-tag">
+                        Estudiante
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <p class="about-description">
+                        Mi formación académica está enfocada en las
+                        Tecnologías de la Información, un campo que
+                        combina innovación, tecnología y resolución
+                        de problemas.
+                    </p>
+
+                    <br>
+
+                    <p class="about-description">
+                        Esta página representa una breve presentación
+                        personal y académica.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACTO -->
+
+        <section class="contact" id="contacto">
+
+            <div class="section-header">
+
+                <div class="section-number">
+                    03
+                </div>
+
+                <h2 class="section-title">
+                    Contacto
+                </h2>
+
+            </div>
+
+
+            <div class="contact-grid">
+
+                <!-- CAMBIA EL CORREO -->
+
+                <a
+                    class="contact-card"
+                    href="mailto:tu_correo@ejemplo.com"
+                >
+
+                    <span class="contact-label">
+                        Correo
+                    </span>
+
+                    <span class="contact-value">
+                        tu_correo@ejemplo.com
+                    </span>
+
+                </a>
+
+
+                <!-- CAMBIA EL TELÉFONO -->
+
+                <a
+                    class="contact-card"
+                    href="tel:+520000000000"
+                >
+
+                    <span class="contact-label">
+                        Teléfono
+                    </span>
+
+                    <span class="contact-value">
+                        +52 000 000 0000
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <span>
+            © 2026 Gilberto Martinez Arriaga
+        </span>
+
+        <span>
+            TECNOLOGÍAS DE LA INFORMACIÓN
+        </span>
+
+    </footer>
+
+</body>
+</html>
